@@ -1,0 +1,85 @@
+// Main.Java:
+public class Main {
+
+    public static void main(String[] args) {
+
+        Game game = new Game();
+        game.startGame();
+
+    }
+
+}
+
+// Game.Java:
+import java.util.Scanner;
+
+public class Game {
+
+    private Scanner input = new Scanner(System.in);
+    private boolean running = true;
+
+    public void startGame() {
+
+        while (running) {
+
+            displayMenu();
+
+            int choice = input.nextInt();
+
+            switch (choice) {
+
+                case 1:
+                    startAdventure();
+                    break;
+
+                case 2:
+                    viewPlayer();
+                    break;
+
+                case 3:
+                    viewInventory();
+                    break;
+
+                case 4:
+                    exitGame();
+                    break;
+
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        }
+
+        input.close();
+    }
+
+    // Displays the main menu
+    private void displayMenu() {
+        System.out.println("\n===== MAIN MENU =====");
+        System.out.println("1. Start Adventure");
+        System.out.println("2. View Player");
+        System.out.println("3. View Inventory");
+        System.out.println("4. Exit");
+        System.out.print("Enter your choice: ");
+    }
+
+    // Placeholder for future gameplay
+    private void startAdventure() {
+        System.out.println("Adventure coming in Week 2!");
+    }
+
+    // Placeholder for player information
+    private void viewPlayer() {
+        System.out.println("Player stats coming soon!");
+    }
+
+    // Placeholder for inventory
+    private void viewInventory() {
+        System.out.println("Inventory coming soon!");
+    }
+
+    // Exit the game
+    private void exitGame() {
+        System.out.println("Thanks for playing!");
+        running = false;
+    }
+}
