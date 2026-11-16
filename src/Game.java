@@ -5,13 +5,13 @@ import java.util.Scanner;
  *
  * Student Notes:
  * - This class handles the main menu and user choices.
- * - You will expand this class throughout the project.
  * - Keep major game flow here, and move detailed logic into other classes later.
  */
 public class Game {
 
     private Scanner input;
     private Player player;
+    private Mission currentMission;
     private boolean running;
 
     /**
@@ -23,7 +23,7 @@ public class Game {
     }
 
     /**
-     * Starts the game loop.
+     * Starts the game loop. Repeats the menu until the user exits.
      */
     public void start() {
         Utils.printHeader("Welcome to the Java EPIC Final Project");
@@ -43,7 +43,7 @@ public class Game {
                     viewPlayer();
                     break;
                 case 4:
-                    runPlaceholderAction();
+                    startAction();
                     break;
                 case 5:
                     exitGame();
@@ -65,7 +65,7 @@ public class Game {
         System.out.println("1. Create Player");
         System.out.println("2. Choose Game Theme");
         System.out.println("3. View Player");
-        System.out.println("4. Start Placeholder Action");
+        System.out.println("4. Start Action");
         System.out.println("5. Exit");
         System.out.println("================================");
     }
@@ -136,19 +136,57 @@ public class Game {
         System.out.println("Theme: " + (player.getGameMode() == null
                 ? "Not selected"
                 : player.getGameMode().getDisplayName()));
+
+        if (currentMission != null) {
+            System.out.println(currentMission.getSummary());
+        }
     }
 
     /**
-     * Placeholder method students can replace with real features later.
+     * Placeholder gameplay action. Creates a mission that matches the chosen
+     * theme and completes it. Replace the body with real gameplay
+     * (combat, XP, rewards) in later weeks.
      */
-    private void runPlaceholderAction() {
+    private void startAction() {
         if (player == null) {
             System.out.println("Create a player first.");
             return;
         }
+        if (player.getGameMode() == null) {
+            System.out.println("Choose a game theme first.");
+            return;
+        }
 
-        System.out.println(player.getName() + " is getting ready for future missions...");
-        System.out.println("This is a placeholder for later gameplay features.");
+        currentMission = createMissionForTheme(player.getGameMode());
+
+        Utils.printHeader("MISSION START");
+        System.out.println(player.getName() + " accepts a new mission!");
+        System.out.println(currentMission.getSummary());
+
+        // TODO (future weeks): add combat, events, XP, and rewards here.
+        System.out.println("Gameplay features coming in later weeks...");
+
+        currentMission.completeMission();
+        System.out.println(currentMission.getSummary());
+    }
+
+    /**
+     * Builds a placeholder mission based on the selected theme.
+     *
+     * @param mode the player's chosen game mode
+     * @return a new Mission
+     */
+    private Mission createMissionForTheme(GameMode mode) {
+        switch (mode) {
+            case FANTASY_DUNGEON:
+                return new Mission("Explore the Cave", "Find the lost treasure.");
+            case CYBER_HACKER:
+                return new Mission("Breach the Firewall", "Access the secure server.");
+            case SPACE_EXPLORER:
+                return new Mission("Scan the Asteroid Field", "Map a safe route.");
+            default:
+                return new Mission("Training Mission", "Learn the basics.");
+        }
     }
 
     /**
