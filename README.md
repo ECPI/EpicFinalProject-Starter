@@ -22,6 +22,56 @@ The goal is not to build everything at once, but to **develop your program incre
 
 ---
 
+# Current Progress
+
+**Latest completed milestone:** Week 2 – Core Actions (`week2-core-actions`)
+
+### Features implemented so far
+
+- Main menu loop with safe input handling
+- Player creation
+- Theme selection using the `GameMode` enum
+- View player info (name, level, theme, party size, items carried)
+- **Add and view characters** stored in an `ArrayList<Character>`
+- **Add and view items** stored in an `ArrayList<Item>`
+
+### Current main menu
+
+```
+========== MAIN MENU ==========
+1. Create Player
+2. Choose Game Theme
+3. View Player
+4. Add Character
+5. View Characters
+6. Add Item
+7. View Inventory
+8. Start Placeholder Action
+9. Exit
+================================
+```
+
+### Classes
+
+| Class | Purpose |
+|------|------|
+| `Main` | Entry point; creates a `Game` and starts it |
+| `Game` | Main menu, game loop, and the `party` and `inventory` collections |
+| `Player` | Stores the player's name, level, and selected theme |
+| `GameMode` | Enum of available themes |
+| `Character` | A party member with a name and power |
+| `Item` | An inventory item with a name, type, and value (new in Week 2) |
+| `Mission` | Starter class for missions (to be used in later weeks) |
+| `Utils` | Helper methods for headers and safe input |
+
+### Coming next
+
+- **Week 3:** Subclasses of `Character` (inheritance and polymorphism)
+- **Week 4:** Game logic and state changes
+- **Week 5:** Final build and polish
+
+---
+
 # Quick Start
 
 Follow these steps to begin your project:
@@ -44,7 +94,7 @@ Follow these steps to begin your project:
 
 [Week 4 - Deliverable Instructions](docs/week4-deliverables.md)
 
-[Week 5 - Deliverable Instructions](docs/final-build.md)
+[Week 5 - Deliverable Instructions](docs/week5-final-build.md)
 
 ---
 
@@ -126,11 +176,12 @@ Repository:
 https://github.com/yourusername/java-final-project
 
 Branch:
-week1-structure
+week2-core-actions
 
 Description:
-Created main menu and game loop.
-Added GameMode class.
+Added Item class.
+Stored characters and items in ArrayLists.
+Added menu options to add and view them.
 Program compiles and runs.
 ```
 
@@ -144,10 +195,9 @@ Minimum commits per week:
 ```**3 commits**```
 
 Example commit history:
-- Created project structure
-- Added Player class
-- Implemented game loop
-
+- Added Item class
+- Added party and inventory ArrayLists
+- Added menu options to add and view characters and items
 
 Avoid committing everything at the last minute.
 

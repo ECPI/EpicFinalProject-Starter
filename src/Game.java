@@ -1,12 +1,13 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
  * Controls the main game flow and menu system.
  *
- * Student Notes:
- * - This class handles the main menu and user choices.
- * - You will expand this class throughout the project.
- * - Keep major game flow here, and move detailed logic into other classes later.
+ * Week 2 additions:
+ * - ArrayList<Character> party stores characters created by the user
+ * - ArrayList<Item> inventory stores items created by the user
+ * - Menu options to add and view both collections
  */
 public class Game {
 
@@ -14,12 +15,18 @@ public class Game {
     private Player player;
     private boolean running;
 
+    // Week 2 collections
+    private ArrayList<Character> party;
+    private ArrayList<Item> inventory;
+
     /**
      * Constructs the game and prepares required resources.
      */
     public Game() {
         input = new Scanner(System.in);
         running = true;
+        party = new ArrayList<>();
+        inventory = new ArrayList<>();
     }
 
     /**
@@ -43,9 +50,21 @@ public class Game {
                     viewPlayer();
                     break;
                 case 4:
-                    runPlaceholderAction();
+                    addCharacter();
                     break;
                 case 5:
+                    viewCharacters();
+                    break;
+                case 6:
+                    addItem();
+                    break;
+                case 7:
+                    viewInventory();
+                    break;
+                case 8:
+                    runPlaceholderAction();
+                    break;
+                case 9:
                     exitGame();
                     break;
                 default:
@@ -65,8 +84,12 @@ public class Game {
         System.out.println("1. Create Player");
         System.out.println("2. Choose Game Theme");
         System.out.println("3. View Player");
-        System.out.println("4. Start Placeholder Action");
-        System.out.println("5. Exit");
+        System.out.println("4. Add Character");
+        System.out.println("5. View Characters");
+        System.out.println("6. Add Item");
+        System.out.println("7. View Inventory");
+        System.out.println("8. Start Placeholder Action");
+        System.out.println("9. Exit");
         System.out.println("================================");
     }
 
@@ -136,6 +159,85 @@ public class Game {
         System.out.println("Theme: " + (player.getGameMode() == null
                 ? "Not selected"
                 : player.getGameMode().getDisplayName()));
+        System.out.println("Party size: " + party.size());
+        System.out.println("Items carried: " + inventory.size());
+    }
+
+    /**
+     * Creates a Character from user input and stores it in the party list.
+     */
+    private void addCharacter() {
+        if (player == null) {
+            System.out.println("Create a player first before adding characters.");
+            return;
+        }
+
+        String name = Utils.readNonEmptyString(input, "Enter character name: ");
+        int power = Utils.readInt(input, "Enter character power (1-100): ");
+
+        if (power < 1 || power > 100) {
+            System.out.println("Power must be between 1 and 100. Character not added.");
+            return;
+        }
+
+        Character character = new Character(name, power);
+        party.add(character);
+
+        System.out.println(name + " has joined your party!");
+    }
+
+    /**
+     * Displays every character stored in the party list.
+     */
+    private void viewCharacters() {
+        if (party.isEmpty()) {
+            System.out.println("Your party is empty. Add a character first.");
+            return;
+        }
+
+        Utils.printHeader("PARTY MEMBERS");
+        for (int i = 0; i < party.size(); i++) {
+            System.out.println((i + 1) + ". " + party.get(i).getSummary());
+        }
+    }
+
+    /**
+     * Creates an Item from user input and stores it in the inventory list.
+     */
+    private void addItem() {
+        if (player == null) {
+            System.out.println("Create a player first before adding items.");
+            return;
+        }
+
+        String name = Utils.readNonEmptyString(input, "Enter item name: ");
+        String type = Utils.readNonEmptyString(input, "Enter item type (Weapon, Tool, Artifact...): ");
+        int value = Utils.readInt(input, "Enter item value: ");
+
+        if (value < 0) {
+            System.out.println("Value cannot be negative. Item not added.");
+            return;
+        }
+
+        Item item = new Item(name, type, value);
+        inventory.add(item);
+
+        System.out.println(name + " was added to your inventory.");
+    }
+
+    /**
+     * Displays every item stored in the inventory list.
+     */
+    private void viewInventory() {
+        if (inventory.isEmpty()) {
+            System.out.println("Your inventory is empty. Add an item first.");
+            return;
+        }
+
+        Utils.printHeader("INVENTORY");
+        for (int i = 0; i < inventory.size(); i++) {
+            System.out.println((i + 1) + ". " + inventory.get(i).getSummary());
+        }
     }
 
     /**
