@@ -1,272 +1,243 @@
-# Java EPIC Final Project
+# Java EPIC Final Project Starter
 
-A multi-class, console-based Java application that you will build incrementally over five weeks. The starter code gives you a working menu system, a player, and a theme selector. Your job is to extend it into a complete small game or simulator.
+Welcome to the **Java EPIC Final Project**.
 
----
+In this project you will build a multi-class Java application over several weeks while using **GitHub to track your development progress**.
 
-## Project Goal
-
-Build a **multi-class Java console application** (a game, simulator, or interactive system) that grows each week as you apply new concepts from the course. By the end, your program should demonstrate:
-
-- Multiple interacting classes
-- Encapsulation with private fields, getters, and setters
-- Inheritance and polymorphism
-- Collections such as `ArrayList`
-- Game logic that changes program state
-- Reliable user input handling
+This repository includes starter code, project structure, and workflow guidance to help you build your final program step-by-step.
 
 ---
 
-## Quick Start
+# Project Goal
 
-1. **Fork** this repository to your own GitHub account.
-2. **Clone** your fork to your computer.
-3. Open the project in **Eclipse**.
-4. Run `Main.java` to confirm the starter code works.
-5. Create your Week 1 branch and begin building.
+Create a **multi-class Java console application** such as:
 
----
+• a game  
+• a simulator  
+• an interactive system  
 
-## Running the Program
+Your project should grow each week as you apply new Java concepts from the course.
 
-1. Open the project in Eclipse.
-2. Locate `Main.java`.
-3. Right-click it and choose **Run As → Java Application**.
-
-The program launches in the console and displays the main menu.
+The goal is not to build everything at once, but to **develop your program incrementally**.
 
 ---
 
-## Starter Code Overview
+# Current Progress
 
-| File | Purpose |
-|------|---------|
-| `Main.java` | Entry point. Creates a `Game` and starts it. |
-| `Game.java` | Controls the main game loop and menu. Most new features will be wired in here. |
-| `Player.java` | Stores the player's name, level, and chosen theme. |
-| `GameMode.java` | Enum of available themes: Fantasy Dungeon, Cyber Hacker, Space Explorer. |
-| `Utils.java` | Reusable helpers, including `printHeader`, `readInt`, and `readNonEmptyString` for safe input. |
-| `Character.java` | Basic character with a name and power. Becomes the parent class in Week 3. |
-| `Mission.java` | Basic mission with a title and completion status. Useful for Week 4 game logic. |
+**Latest completed milestone:** Week 2 – Core Actions (`week2-core-actions`)
 
-### Starter Menu
+### Features implemented so far
+
+- Main menu loop with safe input handling
+- Player creation
+- Theme selection using the `GameMode` enum
+- View player info (name, level, theme, party size, items carried)
+- **Add and view characters** stored in an `ArrayList<Character>`
+- **Add and view items** stored in an `ArrayList<Item>`
+
+### Current main menu
 
 ```
 ========== MAIN MENU ==========
 1. Create Player
 2. Choose Game Theme
 3. View Player
-4. Start Placeholder Action
-5. Exit
+4. Add Character
+5. View Characters
+6. Add Item
+7. View Inventory
+8. Start Placeholder Action
+9. Exit
 ================================
 ```
 
-### Ground Rules for the Starter Code
+### Classes
 
-You may add new classes and methods freely, but you should **not**:
-
-- Remove `Main.java` or `Game.java`
-- Rename existing starter files
-- Delete the starter structure
-
-Your job is to **extend** the system, not rebuild it.
-
----
-
-## Weekly Roadmap
-
-| Week | Focus | Branch | What You Build |
-|------|-------|--------|----------------|
-| 1 | Program Structure | `week1-structure` | Menu loop, player creation, theme selection, view player info |
-| 2 | Core Classes | `week2-core-actions` | New classes, constructors, private fields, objects stored in an `ArrayList`, menu options to create and view them |
-| 3 | Inheritance and Polymorphism | `week3-collections` | A `Character` parent class, at least two subclasses with overridden methods, stored in `ArrayList<Character>` |
-| 4 | Game Logic | `week4-game-logic` | At least one system that changes state (missions, battles, XP, inventory, etc.), clear output, better input validation |
-| 5 | Final Build | `week5-final-build` | Polish, bug fixes, complete features, merge into `main` |
-
-### Week-by-Week Targets
-
-**Week 1:** Program runs from `Main.java`, menu loops until exit, player can be created, a theme can be chosen, and player info displays correctly.
-
-**Week 2:** At least one new class beyond the starter files, objects created through constructors, objects stored in an `ArrayList`, and menu options to add and display them.
-
-**Week 3:** Example hierarchy:
-
-```
-Character
- ├ Warrior   → specialAttack()
- ├ Hacker    → hackSystem()
- └ Explorer  → findArtifact()
-```
-
-Store subclasses in one collection and call a shared method so each subclass's behavior runs:
-
-```java
-ArrayList<Character> party = new ArrayList<>();
-party.add(new Warrior("Aragorn"));
-party.add(new Hacker("Neo"));
-
-for (Character c : party) {
-    c.performAction();
-}
-```
-
-**Week 4:** Add a meaningful system where an action updates values and shows results, for example:
-
-```
-Mission: Explore Cave
-Warrior attacks enemy!
-Victory!
-
-+50 XP
-Health: 75
-Credits: 120
-```
-
-One well-implemented system is better than several unfinished ones.
-
-**Week 5:** Final feature checklist:
-
-- Working main menu
-- Player creation
-- Multiple character types with subclass behavior
-- Collections storing objects
-- Actions that change game state
-- Clear console output
-- Input validation
-- Program runs start to finish without crashing
-
----
-
-## Git Workflow
-
-Do **not** work directly on `main` until the final submission. Each week follows the same cycle:
-
-1. Create a new branch
-2. Develop your features
-3. Commit your work
-4. Push to GitHub
-5. Submit in Canvas
-
-### The Core Commands
-
-| Command | Purpose |
-|---------|---------|
-| `git clone REPOSITORY_URL` | Download your repository (once) |
-| `git checkout -b branch-name` | Create a weekly branch |
-| `git add .` | Stage your changes |
-| `git commit -m "message"` | Save your work with a description |
-| `git push origin branch-name` | Upload your branch to GitHub |
-
-### Example Weekly Cycle
-
-```
-git checkout -b week2-core-actions
-git add .
-git commit -m "Added Character class and party ArrayList"
-git push origin week2-core-actions
-```
-
-### Final Merge (Week 5)
-
-```
-git checkout main
-git merge week5-final-build
-git push origin main
-```
-
-If something looks wrong, `git status` shows what changed and `git log` shows your commit history.
-
----
-
-## Commit Expectations
-
-Make **at least 3 meaningful commits per week**. Your history should show steady progress, not one large commit at the last minute.
-
-**Good messages**
-- Added main menu and start method
-- Created Player class with health field
-- Implemented inventory using ArrayList
-- Fixed invalid menu input handling
-
-**Bad messages**
-- update
-- stuff
-- final
-- idk
-
----
-
-## Repository Structure
-
-```
-src/           Java source files
-docs/          design notes and reflections
-screenshots/   proof of progress
-```
-
----
-
-## Weekly Canvas Submission
-
-Each submission must include:
-
-- **Repository link:** `https://github.com/yourusername/java-epic-final-project`
-- **Branch name** used for that week's deliverable
-- **Screenshot** of the running program, saved in `screenshots/`
-- **Short description** of your progress
-
-Suggested screenshot names:
-
-| Week | File |
+| Class | Purpose |
 |------|------|
-| 1 | `screenshots/week1-menu.png` |
-| 2 | `screenshots/week2-progress.png` |
-| 3 | `screenshots/week3-progress.png` |
-| 4 | `screenshots/week4-progress.png` |
-| 5 | `screenshots/final-project.png` |
+| `Main` | Entry point; creates a `Game` and starts it |
+| `Game` | Main menu, game loop, and the `party` and `inventory` collections |
+| `Player` | Stores the player's name, level, and selected theme |
+| `GameMode` | Enum of available themes |
+| `Character` | A party member with a name and power |
+| `Item` | An inventory item with a name, type, and value (new in Week 2) |
+| `Mission` | Starter class for missions (to be used in later weeks) |
+| `Utils` | Helper methods for headers and safe input |
 
-### Example Submission
+### Coming next
 
+- **Week 3:** Subclasses of `Character` (inheritance and polymorphism)
+- **Week 4:** Game logic and state changes
+- **Week 5:** Final build and polish
+
+---
+
+# Quick Start
+
+Follow these steps to begin your project:
+
+1. **Fork this repository** to your own GitHub account.
+2. **Clone your fork** to your computer.
+3. Open the project in **Eclipse**.
+4. Run `Main.java` to confirm the starter code works.
+5. Create your **Week 1 branch**.
+6. Begin implementing your weekly deliverables.
+
+---
+# Weekly Instructions
+
+[Week 1 - Deliverable Instructions](docs/week1-deliverables.md)
+
+[Week 2 - Deliverable Instructions](docs/week2-deliverables.md)
+
+[Week 3 - Deliverable Instructions](docs/week3-deliverables.md)
+
+[Week 4 - Deliverable Instructions](docs/week4-deliverables.md)
+
+[Week 5 - Deliverable Instructions](docs/week5-final-build.md)
+
+---
+
+# Weekly Workflow
+
+Each week you will:
+
+1. Create a new **branch**
+2. Develop your project features
+3. Commit your work
+4. Push your changes to GitHub
+5. Submit your branch in Canvas
+
+This workflow allows your instructor to:
+
+• see your development progress  
+• review your code changes  
+• track how your project evolves  
+
+---
+
+# Weekly Branch Names
+
+Use the following branch names for each deliverable:
+```
+week1-structure
+week2-core-actions
+week3-collections
+week4-game-logic
+final-build
+```
+
+Do **not work directly in the `main` branch** until the final submission.
+
+---
+
+# Weekly Development Process
+
+Detailed instructions for the GitHub workflow are located here:
+```docs/github-survival-guide.md```
+
+This guide walks you through:
+
+• forking  
+• cloning  
+• creating branches  
+• committing code  
+• pushing to GitHub  
+
+---
+
+# Important Starter Code Notes
+
+You may **add new classes and methods as needed**, but you should NOT:
+
+- remove `Main.java`
+- remove `Game.java`
+- rename existing starter files
+- delete the starter structure
+
+Your job is to **extend the system**, not rebuild it.
+
+---
+
+# Submit Your Deliverable in Canvas
+
+Your Canvas submission must include:
+
+- GitHub repository link 
+  - Screenshots of the program running should be available in the screenshots folder
+  - Please name the screenshots appropriately
+    
+- Branch name used for the deliverable  
+- Short description of your progress  
+
+Example submission:
 ```
 Repository:
-https://github.com/yourusername/java-epic-final-project
+https://github.com/yourusername/java-final-project
 
 Branch:
-week1-structure
+week2-core-actions
 
 Description:
-Created main menu and game loop.
-Added GameMode class.
+Added Item class.
+Stored characters and items in ArrayLists.
+Added menu options to add and view them.
 Program compiles and runs.
 ```
 
 ---
 
-## Code Quality Checklist
+# Commit Expectations
 
-Before each submission, review your code for:
+Your repository should show **consistent progress throughout the week**.
 
-- Clear variable and method names
-- Logical class structure
-- Comments explaining important logic
-- Consistent formatting
-- Minimal duplicate code
+Minimum commits per week:
+```**3 commits**```
+
+Example commit history:
+- Added Item class
+- Added party and inventory ArrayLists
+- Added menu options to add and view characters and items
+
+Avoid committing everything at the last minute.
+
+GitHub should show the **development process**, not just the final result.
 
 ---
 
-## Final Submission
+# Recommended Folder Structure
+```
+src/ → Java source files
+docs/ → design notes and reflections
+screenshots/ → screenshots of your progress
+```
+
+---
+
+# Running the Program
+
+To run the project:
+
+1. Open the project in Eclipse
+2. Locate `Main.java`
+3. Run the program
+
+The application should launch in the console.
+
+---
+
+# Final Submission
 
 Your final submission must include:
 
-- The completed project in the `main` branch
-- A final screenshot or demo in `screenshots/`
-- All required features implemented
-- A completed final reflection
+- Completed project in the `main` branch  
+- Final screenshot or demo in the screenshots folder
+- All required project features implemented  
 
 ---
 
-## Tips
 
-- Build step by step, test frequently, and commit often.
-- A small program that works reliably beats a complicated one that crashes.
-- Extend your existing system each week rather than rewriting it.
+
+Build your project step-by-step, test frequently, and commit your progress regularly.
+
+Good luck and have fun building your EPIC project.
